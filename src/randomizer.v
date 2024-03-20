@@ -17,7 +17,7 @@ module randomizer (
 
   initial x = 18'b000000000000000001;
   initial y = 18'b111111111111111111;
-  initial r0 = 2'b00;
+  initial o_r = 2'b00;
   
   wire z1,z2;
   wire [1:0] z12;
