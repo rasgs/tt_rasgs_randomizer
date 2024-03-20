@@ -5,7 +5,7 @@
 
 `define default_netname none
 
-module tt_um_example (
+module tt_rgs_randomizer (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -17,8 +17,8 @@ module tt_um_example (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-  assign uio_out = 0;
-  assign uio_oe  = 0;
+  assign uio_out[7:0] = 8'b0000_0000;
+  assign uio_oe[7:0]  = 8'b0000_0000;
 
   wire [1:0] o_r = 2'b0;
   wire i_clk, i_reset, i_en;
@@ -27,7 +27,12 @@ module tt_um_example (
   assign i_reset = ~rst_n;
   assign i_en = ui_in[0];
   assign uo_out[1:0] = o_r;
-  assign uo_out[7:2] = 6'b0;
+  assign uo_out[2] = 1'b0;
+  assign uo_out[3] = 1'b0;
+  assign uo_out[4] = 1'b0;
+  assign uo_out[5] = 1'b0;
+  assign uo_out[6] = 1'b0;
+  assign uo_out[7] = 1'b0;
   
   randomizer randomizer_inst (
     .i_clk(i_clk),
