@@ -13,7 +13,7 @@ ifneq ($(GATES),yes)
 # RTL simulation:
 SIM_BUILD				= sim_build/rtl
 VERILOG_SOURCES += $(addprefix $(SRC_DIR)/,$(PROJECT_SOURCES))
-COMPILE_ARGS 		+= -I$(SRC_DIR)
+COMPILE_ARGS 		+= -I$(SRC_DIR) 
 
 else
 
@@ -38,6 +38,7 @@ TOPLEVEL = tb
 
 # MODULE is the basename of the Python test file
 MODULE = test
+COCOTB_RESOLVE_X=ZEROS
 
 # include cocotb's make rules to take care of the simulator setup
 include $(shell cocotb-config --makefiles)/Makefile.sim
