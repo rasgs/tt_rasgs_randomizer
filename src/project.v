@@ -27,7 +27,8 @@ module tt_um_example (
   assign i_reset = ~rst_n;
   assign i_en = ui_in[0];
   assign uo_out[1:0] = o_r;
-
+  assign uo_out[7:2] = 6'b0;
+  
   randomizer randomizer_inst (
     .i_clk(i_clk),
     .i_reset( i_reset),
