@@ -37,7 +37,7 @@ async def test_adder(dut):
   k = 0
   while k < N_cycles:
     await RisingEdge(dut.clk)
-    assert int(dut.uo_out.value) == int(R_true[k])
+    assert dut.uo_out.value.integer == int(R_true[k])
     k += 1
 
 def make_randomizer(N = 133440):
