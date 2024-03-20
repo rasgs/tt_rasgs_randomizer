@@ -17,8 +17,22 @@ module tt_um_example (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
   assign uio_out = 0;
   assign uio_oe  = 0;
+
+  wire [1:0] o_r = 2'b0;
+  wire i_clk, i_reset, i_en;
+
+  assign i_clk = clk;
+  assign i_reset = ~rst_n;
+  assign i_en = ui_in[0];
+  assign o_r = uo_out[1:0];
+
+  randomizer randomizer_inst (
+    .i_clk(i_clk),
+    . i_reset( i_reset),
+    . i_en(i_en),
+    .o_r(o_r)
+  );
 
 endmodule
