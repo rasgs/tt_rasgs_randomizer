@@ -9,12 +9,12 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+It generates a pseudo-random number between 0 and 3, which is used for scrambling the output of the CCSDS transmitter.
 
 ## How to test
 
-Explain how to use your project
+Run the cocotb testbench and compare it to the randomizer specified in Python.
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+No external HW needed for now.
