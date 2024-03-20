@@ -6,7 +6,6 @@ SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
 PROJECT_SOURCES = randomizer.v project.v
-COCOTB_RESOLVE_X = ZEROS
 
 ifneq ($(GATES),yes)
 
