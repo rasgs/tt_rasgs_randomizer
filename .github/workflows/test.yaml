@@ -23,6 +23,10 @@ jobs:
           pip install cocotb~=1.8.0
           cocotb-config --libpython
           cocotb-config --python-bin
+      - name: Install numpy
+        shell: bash
+        run: |
+          pip install numpy
 
       - name: Run tests
         run: |
