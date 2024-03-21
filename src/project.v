@@ -26,14 +26,8 @@ module tt_um_rgs_randomizer (
   assign i_clk = clk;
   assign i_reset = ~rst_n;
   assign i_en = ui_in[0];
-  assign uo_out[0] = o_r[1];
-  assign uo_out[1] = o_r[1];
-  assign uo_out[2] = 1'b0;
-  assign uo_out[3] = 1'b0;
-  assign uo_out[4] = 1'b0;
-  assign uo_out[5] = 1'b0;
-  assign uo_out[6] = 1'b0;
-  assign uo_out[7] = 1'b0;
+  assign uo_out[1:0] = o_r;
+  assign uo_out[7:2] = 6'b000000;
   
   randomizer randomizer_inst (
     .i_clk(i_clk),
