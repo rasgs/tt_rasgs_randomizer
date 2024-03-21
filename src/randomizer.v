@@ -18,8 +18,8 @@ module randomizer (
   initial x = 18'b000000000000000001;
   initial y = 18'b111111111111111111;
   
-  wire z1,z2 = 0;
-  wire [1:0] z12 = 0;
+  wire z1,z2;
+  wire [1:0] z12;
   assign z1= x[4] ^ x[6] ^ x[15];
   assign z2 = y[5] ^ y[6] ^ y[8] ^ y[9] ^ y[10] ^ y[11] ^ y[12] ^ y[13] ^ y[14] ^ y[15];
 
