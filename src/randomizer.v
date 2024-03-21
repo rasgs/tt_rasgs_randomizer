@@ -5,7 +5,7 @@
 // see Appendix C in https://public.ccsds.org/Pubs/131x2b1e1.pdf
 
 module randomizer (
-  output wire [1:0] o_r,
+  output reg [1:0] o_r,
   input wire i_clk,
   input wire i_reset,
   input wire i_en
