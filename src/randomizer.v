@@ -24,7 +24,7 @@ module randomizer (
   assign z2 = y[5] ^ y[6] ^ y[8] ^ y[9] ^ y[10] ^ y[11] ^ y[12] ^ y[13] ^ y[14] ^ y[15];
 
   assign z12 = z1 ^ z2; // zn(i+131072 mod(2 18-1)) * 2
-  assign o_r = {z12, 1'b0} + {1'b0, x[0] ^ y[0]};
+  assign o_r = 2'b11;//{z12, 1'b0} | {1'b0, x[0] ^ y[0]};
 
   always @(posedge i_clk) begin
     //i_en_delayed <= i_en;
