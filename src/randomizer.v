@@ -11,8 +11,8 @@ module randomizer (
   input wire i_en
   );
 
-  reg [17:0] x = 0;
-  reg [17:0] y = 0;
+  reg [17:0] x;
+  reg [17:0] y;
   //reg i_en_delayed = 0; // delay EN by 1 clock cycle to get same state as Python simulation 
 
   initial x = 18'b000000000000000001;
