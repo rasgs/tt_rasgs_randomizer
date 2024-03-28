@@ -20,7 +20,7 @@ module tt_um_rgs_randomizer (
   assign uio_out[7:0] = 8'b0000_0000;
   assign uio_oe[7:0]  = 8'b0000_0000;
 
-  wire [1:0] o_r = 2'b00;
+  wire [1:0] o_r;
   wire i_clk, i_reset, i_en;
 
   assign i_clk = clk;
