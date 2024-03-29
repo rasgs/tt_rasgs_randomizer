@@ -25,7 +25,7 @@ module randomizer (
   assign z12 = z1 ^ z2; // zn(i+131072 mod(2 18-1)) * 2
   assign o_r = {z12, x[0] ^ y[0]};
 
-  always @(posedge i_reset, posedge i_clk) begin
+  always @(posedge i_reset, posedge i_en, posedge i_clk) begin
     if (i_reset)
         begin
           x <= 18'b000000000000000001;
