@@ -59,7 +59,7 @@ def make_randomizer(N = 133440):
         z2      = (y[5] + y[6] + y[8] + y[9] + y[10] + y[11] + y[12] + y[13] + y[14] + y[15]) % 2
 
         z12     = (z1+z2) % 2
-        Rn[i]   = (2*z12 + z, 4) # mod 4 because we use a 4-bit adder R in 0,1,2,3
+        Rn[i]   = (2*z12 + z) % 4 # mod 4 because we use a 4-bit adder R in 0,1,2,3
 
         xt   = (x[7] + x[0]) % 2
         yt   = (y[10]+y[7]+y[5]+y[0]) % 2
