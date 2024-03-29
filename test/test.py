@@ -5,11 +5,14 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import ClockCycles, RisingEdge
 
+
 @cocotb.test()
 async def test_adder(dut):
   dut._log.info("Start")
-
+  
+  en_cycle = [0, 1, 1, 0, 1]
   N_cycles = 100
+  do_rst = True
 
   # Our example module doesn't use clock and reset, but we show how to use them here anyway.
   clock = Clock(dut.clk, 10, units="us")
@@ -33,10 +36,22 @@ async def test_adder(dut):
   R_true = make_randomizer(N_cycles)
   print(R_true)
   k = 0
+  j = 0
   while k < N_cycles:
+    dut.ui_in.value = en_cycle[j % 5] # enable randomizer
     await RisingEdge(dut.clk)
-    assert dut.uo_out.value.integer == int(R_true[k])
-    k += 1
+    if en_cycle[j % 5]: # if enabled, check the output
+      dut.uo_out.value = R_true[k]
+      assert dut.uo_out.value.integer == int(R_true[k])
+      k += 1
+    j += 1
+    if (do_rst==True) and (j == 37): # do a reset after 37 cycles
+      dut.rst_n.value = 0
+      await RisingEdge(dut.clk)
+      dut.rst_n.value = 1
+      k = 0
+      j = 0
+      do_rst = False
 
 def make_randomizer(N = 133440):
     '''

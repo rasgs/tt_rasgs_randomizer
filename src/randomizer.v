@@ -13,7 +13,6 @@ module randomizer (
 
   reg [17:0] x;
   reg [17:0] y;
-  //reg i_en_delayed = 0; // delay EN by 1 clock cycle to get same state as Python simulation 
 
   initial x = 18'b000000000000000001;
   initial y = 18'b111111111111111111;
@@ -24,10 +23,9 @@ module randomizer (
   assign z2 = y[5] ^ y[6] ^ y[8] ^ y[9] ^ y[10] ^ y[11] ^ y[12] ^ y[13] ^ y[14] ^ y[15];
 
   assign z12 = z1 ^ z2; // zn(i+131072 mod(2 18-1)) * 2
-  assign o_r = (z12 << 1) + {1'b0, x[0] ^ y[0]};
+  assign o_r = {z12, x[0] ^ y[0]};
 
-  always @(posedge i_clk) begin
-    //i_en_delayed <= i_en;
+  always @(posedge i_reset, posedge i_clk) begin
     if (i_reset)
         begin
           x <= 18'b000000000000000001;

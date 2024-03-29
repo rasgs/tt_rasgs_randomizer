@@ -31,7 +31,7 @@ module tt_um_rgs_randomizer (
   
   randomizer randomizer_inst (
     .i_clk(i_clk),
-    .i_reset( i_reset),
+    .i_reset(i_reset),
     .i_en(i_en),
     .o_r(o_r)
   );
