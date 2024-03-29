@@ -40,7 +40,7 @@ async def test_adder(dut):
     dut.ui_in.value = en_cycle[j % 6] # enable randomizer
     await RisingEdge(dut.clk)
     if en_cycle[j % 6]: # if enabled, check the output
-      assert dut.uo_out.value.integer == int(R_true[k]), f"Error at clock cycle {k}: {dut.uo_out.value.integer} != {R_true[k]}. has-been-reset={~do_rst}"
+      assert dut.uo_out.value.integer == int(R_true[k]), f"Error at clock cycle {k}: {dut.uo_out.value.integer} != {R_true[k]}. has-been-reset={not do_rst}"
       k += 1
     j += 1
     if (do_rst==True) and (j == 37): # do a reset after 37 cycles
