@@ -40,7 +40,6 @@ async def test_adder(dut):
     dut.ui_in.value = en_cycle[j % 5] # enable randomizer
     await RisingEdge(dut.clk)
     if en_cycle[j % 5]: # if enabled, check the output
-      dut.uo_out.value = R_true[k]
       assert dut.uo_out.value.integer == int(R_true[k]), f"Error at cycle {k}: {dut.uo_out.value.integer} != {R_true[k]}"
       k += 1
     j += 1
