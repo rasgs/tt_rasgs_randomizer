@@ -30,7 +30,7 @@ async def test_adder(dut):
 
   # Set the input values, wait one clock cycle, and check the output
   dut._log.info("Test")
-  dut.ui_in.value = 1 # enable randomizer
+  dut.ui_in.value = 0 # enable randomizer
 
   R_true = make_randomizer(N_cycles)
   print(R_true)
@@ -40,13 +40,14 @@ async def test_adder(dut):
     dut.ui_in.value = en_cycle[j % 5] # enable randomizer
     await RisingEdge(dut.clk)
     if en_cycle[j % 5]: # if enabled, check the output
-      assert dut.uo_out.value.integer == int(R_true[k]), f"Error at cycle {k}: {dut.uo_out.value.integer} != {R_true[k]}"
+      assert dut.uo_out.value.integer == int(R_true[k]), f"Error at clock cycle {k}: {dut.uo_out.value.integer} != {R_true[k]}. has-been-reset={do_rst}"
       k += 1
     j += 1
     if (do_rst==True) and (j == 37): # do a reset after 37 cycles
       dut.rst_n.value = 0
       await RisingEdge(dut.clk)
       dut.rst_n.value = 1
+      await RisingEdge(dut.clk) # ignore the first cycle after reset
       k = 0
       j = 0
       do_rst = False
