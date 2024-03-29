@@ -50,7 +50,7 @@ def make_randomizer(N = 133440):
     x = [0]*K # initial generator sequence
     x[0] = 1
     y = [1]*K
-    Rn = [N]*N
+    Rn = [1]*N
     # generate random sequence
     for i in range(N):
 
