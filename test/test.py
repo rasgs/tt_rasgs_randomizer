@@ -64,7 +64,9 @@ def make_randomizer(N = 133440):
         xt   = (x[7] + x[0]) % 2
         yt   = (y[10]+y[7]+y[5]+y[0]) % 2
 
-        x.append(xt).pop(0)
-        y.append(yt).pop(0)
+        x.append(xt)
+        x.pop(0)
+        y.append(yt)
+        x.pop(0)
     
     return Rn
