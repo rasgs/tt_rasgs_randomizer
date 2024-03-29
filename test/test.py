@@ -5,8 +5,6 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import ClockCycles, RisingEdge
 
-import numpy as np
-
 @cocotb.test()
 async def test_adder(dut):
   dut._log.info("Start")
@@ -49,24 +47,24 @@ def make_randomizer(N = 133440):
     '''
     K = 18 #number of bits in register
 
-    x = np.zeros((K,)) # initial generator sequence
+    x = [0]*K # initial generator sequence
     x[0] = 1
-    y = np.ones((K,))
-    Rn =  np.ones((N,))
+    y = [1]*K
+    Rn = [N]*N
     # generate random sequence
     for i in range(N):
 
-        z       = np.mod(x[0] + y[0], 2) # gold sequence
-        z1      = np.mod(x[4]+x[6]+x[15], 2) # gold sequence
-        z2      = np.mod(y[5] + y[6] + y[8] + y[9] + y[10] + y[11] + y[12] + y[13] + y[14] + y[15], 2)
+        z       = (x[0] + y[0]) % 2 # gold sequence
+        z1      = (x[4]+x[6]+x[15]) % 2 # gold sequence
+        z2      = (y[5] + y[6] + y[8] + y[9] + y[10] + y[11] + y[12] + y[13] + y[14] + y[15]) % 2
 
-        z12     = np.mod(z1+z2, 2)
-        Rn[i]   = np.mod(2*z12 + z, 4) # mod 4 because we use a 4-bit adder R in 0,1,2,3
+        z12     = (z1+z2) % 2
+        Rn[i]   = (2*z12 + z, 4) # mod 4 because we use a 4-bit adder R in 0,1,2,3
 
-        xt   = np.mod(x[7] + x[0], 2)
-        yt   = np.mod(y[10]+y[7]+y[5]+y[0], 2)
+        xt   = (x[7] + x[0]) % 2
+        yt   = (y[10]+y[7]+y[5]+y[0]) % 2
 
-        x = np.append(x[1:],xt)
-        y = np.append(y[1:],yt)
+        x.append(xt).pop(0)
+        y.append(yt).pop(0)
     
     return Rn
