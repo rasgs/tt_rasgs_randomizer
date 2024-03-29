@@ -67,6 +67,6 @@ def make_randomizer(N = 133440):
         x.append(xt)
         x.pop(0)
         y.append(yt)
-        x.pop(0)
+        y.pop(0)
     
     return Rn
