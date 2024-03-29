@@ -19,7 +19,7 @@ module randomizer (
   
   wire z1,z2;
   wire z12;
-  assign z1= x[4] ^ x[6] ^ x[15];
+  assign z1 = x[4] ^ x[6] ^ x[15];
   assign z2 = y[5] ^ y[6] ^ y[8] ^ y[9] ^ y[10] ^ y[11] ^ y[12] ^ y[13] ^ y[14] ^ y[15];
 
   assign z12 = z1 ^ z2; // zn(i+131072 mod(2 18-1)) * 2

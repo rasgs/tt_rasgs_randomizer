@@ -10,7 +10,7 @@ from cocotb.triggers import ClockCycles, RisingEdge
 async def test_adder(dut):
   dut._log.info("Start")
   
-  en_cycle = [0, 1, 1, 0, 1]
+  en_cycle = [1, 1, 1, 1, 1]
   N_cycles = 100
   do_rst = True
 
@@ -38,12 +38,12 @@ async def test_adder(dut):
   j = 0
   while k < N_cycles:
     dut.ui_in.value = en_cycle[j % 5] # enable randomizer
-    j += 1
     await RisingEdge(dut.clk)
-    if en_cycle[(j-1) % 5]: # if enabled, check the output
+    if en_cycle[j % 5]: # if enabled, check the output
       dut.uo_out.value = R_true[k]
-      assert dut.uo_out.value.integer == int(R_true[k])
+      assert dut.uo_out.value.integer == int(R_true[k]), f"Error at cycle {k}: {dut.uo_out.value.integer} != {R_true[k]}"
       k += 1
+    j += 1
     if (do_rst==True) and (j == 37): # do a reset after 37 cycles
       dut.rst_n.value = 0
       await RisingEdge(dut.clk)
